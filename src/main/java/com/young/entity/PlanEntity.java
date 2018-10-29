@@ -54,21 +54,25 @@ public class PlanEntity implements Serializable {
         this.localFlowCost = 0.0;
         this.allCountryFlowLimit = 0;
         this.allCountryFlowCost = 0.0;
-        double minCallCost=plans.get(0).callCost;
-        double minMsgCost=plans.get(0).msgCost;
-        double minLocalFlowCost=plans.get(0).localFlowCost;
-        double minAllCountryFlowCost=plans.get(0).allCountryFlowCost;
+        double minCallCost=0.5;
+        double minMsgCost=0.1;
+        double minLocalFlowCost=2.0;
+        double minAllCountryFlowCost=5.0;
         for (PlanEntity plan : plans) {
             this.cost += plan.cost;
             this.callLimit += plan.callLimit == -1 ? 0 : plan.callLimit;
             this.msgLimit += plan.msgLimit == -1 ? 0 : plan.msgLimit;
             this.localFlowLimit += plan.localFlowLimit == -1 ? 0 : plan.localFlowLimit;
             this.allCountryFlowLimit += plan.allCountryFlowLimit == -1 ? 0 : plan.allCountryFlowLimit;
-            minCallCost = plan.callCost < minCallCost ? plan.callCost : minCallCost;
-            minMsgCost = plan.msgCost < minMsgCost ? plan.msgCost : minMsgCost;
-            minLocalFlowCost = plan.localFlowCost < minLocalFlowCost ? plan.localFlowCost : minLocalFlowCost;
-            minAllCountryFlowCost = plan.allCountryFlowCost < minAllCountryFlowCost ? plan.allCountryFlowCost : minAllCountryFlowCost;
+            minCallCost = (plan.callLimit != -1 && plan.callCost < minCallCost) ? plan.callCost : minCallCost;
+            minMsgCost = (plan.msgLimit != -1 && plan.msgCost < minMsgCost) ? plan.msgCost : minMsgCost;
+            minLocalFlowCost = (plan.localFlowLimit != -1 && plan.localFlowCost < minLocalFlowCost) ? plan.localFlowCost : minLocalFlowCost;
+            minAllCountryFlowCost = (plan.allCountryFlowLimit != -1 && plan.allCountryFlowCost < minAllCountryFlowCost) ? plan.allCountryFlowCost : minAllCountryFlowCost;
         }
+        this.callCost = minCallCost;
+        this.msgCost = minMsgCost;
+        this.localFlowCost = minLocalFlowCost;
+        this.allCountryFlowCost = minAllCountryFlowCost;
     }
 
     public int getPlanId() {
