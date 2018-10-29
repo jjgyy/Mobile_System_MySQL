@@ -189,22 +189,16 @@ public class PlanEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "\nPlanEntity{" +
-                "planId=" + planId +
-                ", cost=" + cost +
-                ", name='" + name + '\'' +
-                ", intro='" + intro + '\'' +
-                ", keep=" + keep +
-                ", del=" + del +
-                ", callLimit=" + callLimit +
-                ", callCost=" + callCost +
-                ", msgLimit=" + msgLimit +
-                ", msgCost=" + msgCost +
-                ", localFlowLimit=" + localFlowLimit +
-                ", localFlowCost=" + localFlowCost +
-                ", allCountryFlowLimit=" + allCountryFlowLimit +
-                ", allCountryFlowCost=" + allCountryFlowCost +
-                '}';
+        return "\n" +
+                "套餐ID: " + planId +
+                "\n套餐价格: " + cost + "元" +
+                ", 套餐名称: '" + name + '\'' +
+                ", 套餐简介: '" + intro + '\'' +
+                (callLimit != -1 ? "\n套餐内通话时长: " + callLimit + "分钟" + ", 套餐外通话价格: " + callCost + "元/分钟" : "") +
+                (msgLimit != -1 ? "\n套餐内短信条数: " + msgLimit + "条" + ", 套餐外短信价格: " + msgCost + "元/条" : "") +
+                (localFlowLimit != -1 ? "\n套餐内本地流量: " + localFlowLimit + "MB" + ", 套餐外本地流量价格: " + localFlowCost + "元/MB" : "") +
+                (allCountryFlowLimit != -1 ? "\n套餐内全国流量: " + allCountryFlowLimit + "MB" + ", 套餐外全国流量价格: " + allCountryFlowCost + "元/MB" : "") +
+                "\n是否续订: " + keep;
     }
 
 }

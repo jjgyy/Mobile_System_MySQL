@@ -3,9 +3,11 @@ package com.young.mapper;
 import com.young.entity.PlanEntity;
 import com.young.entity.UserPlanEntity;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface UserPlanMapper {
 
     @Select("SELECT * FROM plan JOIN user_plan ON plan.plan_id=user_plan.plan_id WHERE user_id=#{0} AND user_plan.del=0")
@@ -37,6 +39,9 @@ public interface UserPlanMapper {
             @Result(property = "allCountryFlowCost",  column = "acost")
     })
     List<PlanEntity> getUserPlanKeepList(int userId);
+
+    @Select("SELECT COUNT(*) FROM user_plan WHERE user_id=#{0} AND plan_id=#{1}")
+    int getUserHasBuyThisPlan(int userId, int planId);
 
     @Insert("INSERT INTO user_plan(user_id, plan_id) VALUES(#{userId}, #{planId})")
     void insert(UserPlanEntity userPlan);

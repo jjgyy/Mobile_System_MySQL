@@ -5,9 +5,11 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface UserPlanRecordMapper {
 
     @Select("SELECT * FROM user_plan_record JOIN plan ON plan.plan_id=user_plan_record.plan_id JOIN user ON user.user_id=user_plan_record.user_id WHERE user_plan_record.user_id=#{0}")

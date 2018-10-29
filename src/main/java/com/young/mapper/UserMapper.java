@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.*;
 
 import com.young.entity.UserEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface UserMapper {
 
     @Select("SELECT * FROM user WHERE del = 0")

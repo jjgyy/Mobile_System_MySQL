@@ -2,9 +2,11 @@ package com.young.mapper;
 
 import com.young.entity.PlanEntity;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface PlanMapper {
 
     @Select("SELECT * FROM plan WHERE del=0")

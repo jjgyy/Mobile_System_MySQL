@@ -93,15 +93,13 @@ public class UserPlanRecordEntity {
 
     @Override
     public String toString() {
-        return "\nUserPlanRecordEntity{" +
+        return "\n" +
                 "planRecordId=" + planRecordId +
                 ", userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", type='" + type + '\'' +
+                " '" + userName + '\'' +
+                ", 操作行为: '" + type + '\'' +
                 ", planId=" + planId +
-                ", planName='" + planName + '\'' +
-                ", time=" + time +
-                ", del=" + del +
-                '}';
+                " '" + planName + '\'' +
+                ", 时间: " + time + "\n";
     }
 }
